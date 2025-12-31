@@ -2,16 +2,16 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Restricted Secure Node</title>
+<title>Restricted Secure Application Node</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{
   background:black;
-  color:#00ffea;
+  color:#00ffee;
   font-family:"Courier New", monospace;
-  overflow:hidden;
+  line-height:1.6;
 }
 
 /* MATRIX BACKGROUND */
@@ -21,29 +21,15 @@ canvas{
   z-index:-1;
 }
 
-/* CENTER PANEL */
-.panel{
-  height:100vh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
-
-.box{
-  width:90%;
-  max-width:520px;
-  background:rgba(0,0,0,0.85);
-  border:1px solid #00ffea;
-  box-shadow:0 0 40px #00ffea;
-  padding:35px;
+/* HEADER */
+header{
+  padding:30px;
   text-align:center;
-  border-radius:10px;
+  border-bottom:1px solid #00ffee;
+  background:rgba(0,0,0,0.85);
 }
-
-/* GLITCH TITLE */
-.glitch{
-  font-size:28px;
-  margin-bottom:10px;
+header h1{
+  font-size:32px;
   animation:glitch 1s infinite;
 }
 @keyframes glitch{
@@ -51,54 +37,90 @@ canvas{
   50%{text-shadow:-2px 0 red,2px 0 blue}
   100%{text-shadow:2px 0 red,-2px 0 blue}
 }
-
-.sub{
-  font-size:13px;
+header p{
+  margin-top:10px;
+  font-size:14px;
   color:#ccc;
-  margin-bottom:20px;
 }
 
-/* TERMINAL TEXT */
+/* LAYOUT */
+.container{
+  max-width:1100px;
+  margin:auto;
+  padding:40px 20px;
+}
+.section{
+  margin-bottom:60px;
+}
+.section h2{
+  color:#00ffee;
+  margin-bottom:15px;
+  border-bottom:1px solid #00ffee;
+  padding-bottom:5px;
+}
+.section p{
+  font-size:15px;
+  color:#ddd;
+  margin-bottom:15px;
+}
+
+/* TERMINAL BOX */
 .terminal{
   background:#000;
-  border:1px solid #0ff;
-  padding:15px;
-  text-align:left;
+  border:1px solid #00ffee;
+  padding:20px;
   font-size:13px;
-  height:110px;
-  overflow:hidden;
-  margin-bottom:20px;
+  box-shadow:0 0 25px #00ffee;
 }
 
-/* BUTTON */
+/* DOWNLOAD */
+.download-box{
+  text-align:center;
+  padding:40px;
+  border:1px solid #00ffee;
+  box-shadow:0 0 40px #00ffee;
+  background:rgba(0,0,0,0.9);
+}
 .btn{
   display:inline-block;
-  padding:15px 40px;
-  background:linear-gradient(135deg,#00ffea,#0077ff);
+  margin-top:25px;
+  padding:18px 45px;
+  background:linear-gradient(135deg,#00ffee,#0077ff);
   color:black;
   font-weight:bold;
-  border-radius:30px;
   text-decoration:none;
-  box-shadow:0 0 25px #00ffea;
+  border-radius:30px;
+  box-shadow:0 0 30px #00ffee;
   transition:0.3s;
 }
 .btn:hover{
-  transform:scale(1.08);
-  box-shadow:0 0 45px #00ffea;
+  transform:scale(1.1);
+  box-shadow:0 0 60px #00ffee;
+}
+
+/* LIST */
+ul{
+  margin-top:15px;
+  margin-left:20px;
+}
+ul li{
+  margin-bottom:8px;
 }
 
 /* WARNING */
-.warn{
-  margin-top:18px;
-  font-size:11px;
+.warning{
+  margin-top:25px;
   color:#ff5555;
+  font-size:13px;
 }
 
-/* FOOT */
-.foot{
-  margin-top:12px;
-  font-size:10px;
+/* FOOTER */
+footer{
+  padding:25px;
+  text-align:center;
+  font-size:11px;
   opacity:0.6;
+  border-top:1px solid #111;
 }
 </style>
 </head>
@@ -107,47 +129,114 @@ canvas{
 
 <canvas id="matrix"></canvas>
 
-<div class="panel">
-  <div class="box">
+<header>
+  <h1>RESTRICTED APPLICATION DISTRIBUTION NODE</h1>
+  <p>Encrypted channel • Verified package • Controlled access</p>
+</header>
 
-    <div class="glitch">RESTRICTED ACCESS NODE</div>
-    <div class="sub">Encrypted application distribution channel</div>
+<div class="container">
 
+  <div class="section">
+    <h2>About This Application</h2>
+    <p>
+      This application is distributed through a restricted delivery portal created
+      to ensure integrity, transparency, and controlled access. The package available
+      here is hosted directly within this repository to prevent unauthorized modification,
+      repackaging, or third‑party interference.
+    </p>
+    <p>
+      This is not a consumer‑oriented application. It is intended for users who
+      understand Android systems, application behavior, and controlled deployment
+      environments. Installation should only be performed on devices you own or
+      have permission to test.
+    </p>
+  </div>
+
+  <div class="section">
+    <h2>Key Features</h2>
+    <ul>
+      <li>Optimized background task handling with minimal resource usage</li>
+      <li>Lightweight APK architecture without unnecessary libraries</li>
+      <li>Permission‑aware design with transparent access flow</li>
+      <li>Stable behavior across multiple Android versions</li>
+      <li>No advertisements, no trackers, no third‑party SDKs</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>Why This Application Exists</h2>
+    <p>
+      Modern applications often prioritize monetization over transparency.
+      This project was developed with a different mindset — focusing on how
+      Android applications behave internally rather than how they generate revenue.
+    </p>
+    <p>
+      The purpose of this application is educational and experimental. It allows
+      users to observe structured app behavior, permission handling, and system
+      interaction within a controlled scope.
+    </p>
+  </div>
+
+  <div class="section">
+    <h2>Developer Information</h2>
+    <p>
+      This application is developed by an independent developer with a strong
+      interest in Android internals, application lifecycle management, and clean
+      software architecture.
+    </p>
+    <p>
+      Development principles followed in this project:
+    </p>
+    <ul>
+      <li>No hidden functionality</li>
+      <li>No forced updates</li>
+      <li>No data harvesting</li>
+      <li>No background network abuse</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>System Log</h2>
     <div class="terminal" id="terminal"></div>
+  </div>
+
+  <div class="section download-box">
+    <h2>Download Package</h2>
+    <p>Verified Android application package available below.</p>
 
     <a href="rat.apk" download class="btn">
       DOWNLOAD APK
     </a>
 
-    <div class="warn">
-      ⚠ Proceed only if you understand what you are installing
+    <div class="warning">
+      ⚠ Install only if you understand what this application does and trust the source.
     </div>
-
-    <div class="foot">
-      © 2025 • Secure Node Active
-    </div>
-
   </div>
+
 </div>
 
+<footer>
+  © 2025 • Secure Node Active • Unauthorized redistribution discouraged
+</footer>
+
 <script>
-/* TERMINAL TYPE EFFECT */
-const lines=[
-  "[+] Initializing secure channel...",
-  "[+] Verifying node integrity...",
-  "[+] Encrypted tunnel established",
-  "[+] Package located: rat.apk",
-  "[+] Awaiting user action..."
+/* TERMINAL EFFECT */
+const logs=[
+  "[+] Initializing secure distribution node...",
+  "[+] Verifying repository integrity...",
+  "[+] Encrypted channel established",
+  "[+] Package detected: rat.apk",
+  "[+] Awaiting authorized user action..."
 ];
-let t=0;
-function typeLine(){
-  if(t<lines.length){
-    document.getElementById("terminal").innerHTML+=lines[t]+"<br>";
-    t++;
-    setTimeout(typeLine,700);
+let i=0;
+function log(){
+  if(i<logs.length){
+    document.getElementById("terminal").innerHTML+=logs[i]+"<br>";
+    i++;
+    setTimeout(log,800);
   }
 }
-typeLine();
+log();
 
 /* MATRIX EFFECT */
 const c=document.getElementById("matrix");
@@ -160,7 +249,7 @@ let drops=Array(Math.floor(c.width/10)).fill(1);
 function draw(){
   ctx.fillStyle="rgba(0,0,0,0.08)";
   ctx.fillRect(0,0,c.width,c.height);
-  ctx.fillStyle="#00ffea";
+  ctx.fillStyle="#00ffee";
   ctx.font="12px monospace";
   for(let i=0;i<drops.length;i++){
     const text=chars[Math.floor(Math.random()*chars.length)];

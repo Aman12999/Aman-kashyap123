@@ -2,69 +2,80 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Restricted Secure Application Node</title>
+<title>Secure Application Distribution Portal</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
+
 body{
-  background:black;
+  background:#000;
   color:#00ffee;
   font-family:"Courier New", monospace;
-  line-height:1.6;
+  line-height:1.7;
 }
 
 /* MATRIX BACKGROUND */
 canvas{
   position:fixed;
-  top:0;left:0;
+  inset:0;
   z-index:-1;
 }
 
 /* HEADER */
 header{
-  padding:30px;
   text-align:center;
-  border-bottom:1px solid #00ffee;
+  padding:35px 20px;
   background:rgba(0,0,0,0.85);
+  border-bottom:1px solid #00ffee;
 }
 header h1{
-  font-size:32px;
+  font-size:34px;
+  letter-spacing:2px;
   animation:glitch 1s infinite;
 }
+header .dev{
+  margin-top:10px;
+  font-size:14px;
+  color:#ccc;
+  letter-spacing:2px;
+}
+header .dev span{
+  color:#00ffee;
+  font-weight:bold;
+}
+
 @keyframes glitch{
   0%{text-shadow:2px 0 red,-2px 0 blue}
   50%{text-shadow:-2px 0 red,2px 0 blue}
   100%{text-shadow:2px 0 red,-2px 0 blue}
 }
-header p{
-  margin-top:10px;
-  font-size:14px;
-  color:#ccc;
-}
 
-/* LAYOUT */
+/* CONTAINER */
 .container{
   max-width:1100px;
   margin:auto;
-  padding:40px 20px;
+  padding:50px 20px;
 }
 .section{
-  margin-bottom:60px;
+  margin-bottom:70px;
 }
 .section h2{
-  color:#00ffee;
-  margin-bottom:15px;
   border-bottom:1px solid #00ffee;
+  margin-bottom:15px;
   padding-bottom:5px;
 }
 .section p{
-  font-size:15px;
   color:#ddd;
+  font-size:15px;
   margin-bottom:15px;
 }
 
-/* TERMINAL BOX */
+/* LIST */
+ul{margin-left:20px}
+ul li{margin-bottom:8px;color:#ccc}
+
+/* TERMINAL */
 .terminal{
   background:#000;
   border:1px solid #00ffee;
@@ -74,53 +85,44 @@ header p{
 }
 
 /* DOWNLOAD */
-.download-box{
+.download{
   text-align:center;
-  padding:40px;
+  padding:50px 25px;
   border:1px solid #00ffee;
-  box-shadow:0 0 40px #00ffee;
-  background:rgba(0,0,0,0.9);
+  box-shadow:0 0 45px #00ffee;
 }
 .btn{
   display:inline-block;
-  margin-top:25px;
-  padding:18px 45px;
+  margin-top:30px;
+  padding:18px 50px;
   background:linear-gradient(135deg,#00ffee,#0077ff);
-  color:black;
+  color:#000;
   font-weight:bold;
   text-decoration:none;
   border-radius:30px;
-  box-shadow:0 0 30px #00ffee;
+  box-shadow:0 0 35px #00ffee;
   transition:0.3s;
 }
 .btn:hover{
   transform:scale(1.1);
-  box-shadow:0 0 60px #00ffee;
+  box-shadow:0 0 70px #00ffee;
 }
-
-/* LIST */
-ul{
-  margin-top:15px;
-  margin-left:20px;
-}
-ul li{
-  margin-bottom:8px;
-}
-
-/* WARNING */
 .warning{
   margin-top:25px;
-  color:#ff5555;
   font-size:13px;
+  color:#ff5555;
 }
 
 /* FOOTER */
 footer{
-  padding:25px;
   text-align:center;
-  font-size:11px;
-  opacity:0.6;
+  padding:25px;
+  font-size:12px;
+  color:#888;
   border-top:1px solid #111;
+}
+footer span{
+  color:#00ffee;
 }
 </style>
 </head>
@@ -130,8 +132,8 @@ footer{
 <canvas id="matrix"></canvas>
 
 <header>
-  <h1>RESTRICTED APPLICATION DISTRIBUTION NODE</h1>
-  <p>Encrypted channel • Verified package • Controlled access</p>
+  <h1>RESTRICTED APPLICATION ACCESS NODE</h1>
+  <div class="dev">Developed by <span>Mr Aman</span></div>
 </header>
 
 <div class="container">
@@ -139,94 +141,87 @@ footer{
   <div class="section">
     <h2>About This Application</h2>
     <p>
-      This application is distributed through a restricted delivery portal created
-      to ensure integrity, transparency, and controlled access. The package available
-      here is hosted directly within this repository to prevent unauthorized modification,
-      repackaging, or third‑party interference.
+      This application is distributed through a controlled and secure channel designed
+      to preserve integrity, authenticity, and transparency. The APK available on this
+      portal is hosted directly within the repository without modification or third‑party
+      interference.
     </p>
     <p>
-      This is not a consumer‑oriented application. It is intended for users who
-      understand Android systems, application behavior, and controlled deployment
-      environments. Installation should only be performed on devices you own or
-      have permission to test.
+      This is not a mass‑market product. It is intended for users who understand Android
+      application behavior, system permissions, and controlled installation environments.
     </p>
   </div>
 
   <div class="section">
     <h2>Key Features</h2>
     <ul>
-      <li>Optimized background task handling with minimal resource usage</li>
-      <li>Lightweight APK architecture without unnecessary libraries</li>
-      <li>Permission‑aware design with transparent access flow</li>
-      <li>Stable behavior across multiple Android versions</li>
-      <li>No advertisements, no trackers, no third‑party SDKs</li>
+      <li>Optimized Android application lifecycle handling</li>
+      <li>Minimal background resource usage</li>
+      <li>No advertisements or analytics SDKs</li>
+      <li>Standalone APK architecture</li>
+      <li>Designed for stability and controlled execution</li>
     </ul>
   </div>
 
   <div class="section">
-    <h2>Why This Application Exists</h2>
+    <h2>Purpose & Vision</h2>
     <p>
       Modern applications often prioritize monetization over transparency.
-      This project was developed with a different mindset — focusing on how
-      Android applications behave internally rather than how they generate revenue.
+      This project was developed to focus on structure, control, and system‑level
+      understanding rather than commercial exploitation.
     </p>
     <p>
-      The purpose of this application is educational and experimental. It allows
-      users to observe structured app behavior, permission handling, and system
-      interaction within a controlled scope.
+      The application serves as an experimental and educational build for observing
+      real‑world Android behavior within a defined scope.
     </p>
   </div>
 
   <div class="section">
     <h2>Developer Information</h2>
     <p>
-      This application is developed by an independent developer with a strong
-      interest in Android internals, application lifecycle management, and clean
-      software architecture.
-    </p>
-    <p>
-      Development principles followed in this project:
+      This application is independently developed and maintained by
+      <strong>Mr Aman</strong>. The project follows strict development principles
+      emphasizing clarity, performance, and responsible application behavior.
     </p>
     <ul>
-      <li>No hidden functionality</li>
-      <li>No forced updates</li>
-      <li>No data harvesting</li>
-      <li>No background network abuse</li>
+      <li>👨‍💻 Developer: Mr Aman</li>
+      <li>📦 Application Package: rat.apk</li>
+      <li>🛠 Platform: Android</li>
+      <li>🔐 Distribution: Direct repository hosting</li>
+      <li>📅 Release Year: 2025</li>
     </ul>
   </div>
 
   <div class="section">
-    <h2>System Log</h2>
+    <h2>System Activity Log</h2>
     <div class="terminal" id="terminal"></div>
   </div>
 
-  <div class="section download-box">
-    <h2>Download Package</h2>
+  <div class="section download">
+    <h2>Download Application</h2>
     <p>Verified Android application package available below.</p>
 
-    <a href="rat.apk" download class="btn">
-      DOWNLOAD APK
-    </a>
+    <a href="rat.apk" download class="btn">DOWNLOAD APK</a>
 
     <div class="warning">
-      ⚠ Install only if you understand what this application does and trust the source.
+      ⚠ Install only on devices you own or have permission to test.
     </div>
   </div>
 
 </div>
 
 <footer>
-  © 2025 • Secure Node Active • Unauthorized redistribution discouraged
+  © 2025 | Developed by <span>Mr Aman</span> | Secure Distribution Active
 </footer>
 
 <script>
 /* TERMINAL EFFECT */
 const logs=[
-  "[+] Initializing secure distribution node...",
-  "[+] Verifying repository integrity...",
-  "[+] Encrypted channel established",
+  "[+] Initializing secure node...",
+  "[+] Verifying application package...",
   "[+] Package detected: rat.apk",
-  "[+] Awaiting authorized user action..."
+  "[+] Integrity check passed",
+  "[+] Awaiting user action..."
 ];
 let i=0;
 function log(){

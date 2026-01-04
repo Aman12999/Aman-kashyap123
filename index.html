@@ -2,285 +2,199 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Restricted Application Access Node</title>
+<title>Restricted Application Portal</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 
 body{
-  min-height:100vh;
-  font-family:system-ui,Arial;
-  color:#ddd;
-  overflow-x:hidden;
   background:#000;
+  color:#fff;
+  font-family:system-ui,Arial;
+  overflow:hidden;
 }
 
-/* ===== BACKGROUND LAYERS ===== */
-.bg{
+/* ===== FULL SCREEN BACKGROUND ===== */
+canvas{
   position:fixed;
   inset:0;
-  z-index:-4;
-  background:
-    radial-gradient(circle at 20% 30%, rgba(255,0,0,.20), transparent 40%),
-    radial-gradient(circle at 80% 70%, rgba(255,40,40,.18), transparent 45%),
-    linear-gradient(180deg,#080000,#000 70%);
-  animation:bgPulse 10s ease-in-out infinite alternate;
+  z-index:-5;
 }
 
-.grid{
-  position:fixed;
-  inset:0;
-  z-index:-3;
-  background-image:
-    linear-gradient(rgba(255,0,0,.08) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,0,0,.08) 1px, transparent 1px);
-  background-size:60px 60px;
-  animation:gridMove 8s linear infinite;
-  opacity:.35;
-}
-
-.noise{
-  position:fixed;
-  inset:0;
-  z-index:-2;
-  background-image:url("https://grainy-gradients.vercel.app/noise.svg");
-  opacity:.08;
-  pointer-events:none;
-}
-
+/* ===== GLOW FOLLOW ===== */
 .glow{
   position:fixed;
-  width:280px;
-  height:280px;
-  background:radial-gradient(circle, rgba(255,0,0,.35), transparent 60%);
+  width:260px;
+  height:260px;
+  background:radial-gradient(circle, rgba(255,0,0,.45), transparent 65%);
   transform:translate(-50%,-50%);
   pointer-events:none;
-  z-index:-1;
+  z-index:-4;
 }
 
-/* ===== ACCESS GRANTED ===== */
-.overlay{
-  position:fixed;
-  inset:0;
-  background:#000;
-  display:none;
-  align-items:center;
-  justify-content:center;
-  z-index:99;
-}
-.overlay h1{
-  color:#00ff99;
-  font-size:48px;
-  letter-spacing:4px;
-  animation:flash 1.2s infinite;
-}
-
-/* ===== MAIN CARD ===== */
+/* ===== MAIN CONTAINER ===== */
 .container{
   max-width:900px;
   margin:40px auto;
-  padding:25px;
-  background:rgba(20,0,0,.55);
-  border:1px solid #400;
-  box-shadow:0 0 50px rgba(255,0,0,.25);
+  padding:30px;
+  background:rgba(0,0,0,.65);
+  border:1px solid #700;
+  box-shadow:0 0 70px rgba(255,0,0,.4);
 }
 
 h1{
   text-align:center;
-  color:#ff3b3b;
+  color:#ff2b2b;
   letter-spacing:2px;
 }
-.sub{
-  text-align:center;
-  color:#aaa;
-  margin-bottom:25px;
-}
 
-.section{
-  border:1px solid #300;
-  padding:15px;
-  margin-bottom:20px;
-}
-.section h2{
-  color:#ff4d4d;
-  margin-bottom:8px;
-}
-.section p, li{
-  font-size:14px;
+p{
+  margin-top:15px;
   line-height:1.6;
+  font-size:15px;
 }
 
-.btn{
+button{
   width:100%;
+  margin-top:20px;
   padding:14px;
   background:#b00000;
-  color:#fff;
   border:none;
+  color:#fff;
   font-size:16px;
-  cursor:pointer;
-  margin-top:10px;
 }
-.btn:hover{background:#ff0000}
 
-/* ===== INSTALL FLOW ===== */
-.progressBox{display:none;margin-top:20px}
+/* ===== ACCESS GRANTED ===== */
+.flash{
+  animation:flash .2s alternate 6;
+}
+@keyframes flash{
+  from{background:#000}
+  to{background:#200}
+}
+
+/* ===== PROGRESS BAR ===== */
 .progress{
-  height:18px;
-  background:#140000;
-  border:1px solid #500;
+  width:100%;
+  height:8px;
+  background:#300;
+  margin-top:15px;
+  display:none;
 }
 .bar{
   height:100%;
   width:0%;
-  background:linear-gradient(90deg,#ff0000,#ff7b7b);
+  background:red;
 }
 
-.permission{display:none;margin-top:20px}
-.permission label{display:block;margin:8px 0}
-
-/* ===== MINIMAL MODE ===== */
-.minimal .section:not(.core),
-.minimal .sub{
+/* ===== PERMISSION SCREEN ===== */
+.permission{
   display:none;
+  margin-top:20px;
+  padding:15px;
+  background:#120000;
+  border:1px solid #600;
 }
 
-/* ===== FOOTER ===== */
-footer{
-  text-align:center;
-  font-size:12px;
-  color:#777;
-  margin-top:15px;
-}
-
-/* ===== ANIMATIONS ===== */
-@keyframes bgPulse{
-  0%{filter:brightness(1)}
-  100%{filter:brightness(1.15)}
-}
-@keyframes gridMove{
-  from{background-position:0 0}
-  to{background-position:60px 60px}
-}
-@keyframes flash{
-  0%,100%{opacity:1}
-  50%{opacity:.2}
-}
-
-@media(max-width:600px){
-  .container{margin:15px}
+.dark-mode{
+  filter:grayscale(.3) brightness(.9);
 }
 </style>
 </head>
 
 <body>
 
-<div class="bg"></div>
-<div class="grid"></div>
-<div class="noise"></div>
+<canvas id="bg"></canvas>
 <div class="glow" id="glow"></div>
 
-<div class="overlay" id="overlay">
-  <h1>ACCESS GRANTED</h1>
-</div>
+<div class="container" id="box">
+  <h1>RESTRICTED APPLICATION ACCESS</h1>
 
-<div class="container" id="app">
+  <p>
+    Developed by <b>Mr Aman</b><br><br>
+    This system operates under a secured animated environment.
+    Continuous background activity represents encrypted internal
+    processes and controlled access layers.
+  </p>
 
-  <h1>RESTRICTED APPLICATION ACCESS NODE</h1>
-  <div class="sub">Developed by Mr Aman • Secure Distribution Active</div>
+  <button onclick="startInstall()">DOWNLOAD & INSTALL</button>
 
-  <div class="section core">
-    <h2>Application Package</h2>
-    <p>
-      Package: <b>rat.apk</b><br>
-      Platform: Android<br>
-      Distribution: Direct Repository Hosting
-    </p>
+  <div class="progress" id="progress">
+    <div class="bar" id="bar"></div>
   </div>
 
-  <div class="section">
-    <h2>About</h2>
-    <p>
-      This interface represents a controlled distribution environment.
-      The application is delivered without third-party modification,
-      advertisements, or analytics frameworks.
-    </p>
+  <div class="permission" id="perm">
+    <b>Required Permissions:</b><br>
+    • Storage Access<br>
+    • Network Control<br>
+    • System Overlay<br><br>
+    <button onclick="grant()">GRANT ACCESS</button>
   </div>
-
-  <div class="section">
-    <h2>Key Features</h2>
-    <ul>
-      <li>Standalone APK architecture</li>
-      <li>Optimized system behavior</li>
-      <li>No ads or trackers</li>
-      <li>Direct download channel</li>
-    </ul>
-  </div>
-
-  <button class="btn" onclick="startInstall()">DOWNLOAD & INSTALL</button>
-
-  <div class="progressBox" id="progressBox">
-    <p>Initializing secure installer…</p>
-    <div class="progress"><div class="bar" id="bar"></div></div>
-  </div>
-
-  <div class="permission" id="permission">
-    <h2>Permissions</h2>
-    <label><input type="checkbox" checked disabled> Storage</label>
-    <label><input type="checkbox" checked disabled> Network</label>
-    <label><input type="checkbox" checked disabled> Foreground Service</label>
-
-    <a href="rat.apk" download>
-      <button class="btn">FINAL DOWNLOAD</button>
-    </a>
-  </div>
-
-  <button class="btn" style="background:#222" onclick="toggleMinimal()">
-    TOGGLE ULTRA-MINIMAL MODE
-  </button>
-
-  <footer>© 2025 • Developed by Mr Aman</footer>
-
 </div>
 
 <script>
-/* mouse glow */
-document.addEventListener("mousemove",e=>{
-  glow.style.left=e.clientX+"px";
-  glow.style.top=e.clientY+"px";
-});
+/* ===== FULL SCREEN BACKGROUND ANIMATION ===== */
+const c=document.getElementById("bg"),x=c.getContext("2d");
+function resize(){
+  c.width=innerWidth;
+  c.height=innerHeight;
+}
+resize();onresize=resize;
 
-/* install flow */
+let dots=[];
+for(let i=0;i<220;i++){
+  dots.push({
+    x:Math.random()*c.width,
+    y:Math.random()*c.height,
+    s:Math.random()*1.2+.3
+  });
+}
+
+function animate(){
+  x.fillStyle="rgba(0,0,0,.25)";
+  x.fillRect(0,0,c.width,c.height);
+
+  for(let d of dots){
+    x.fillStyle="rgba(255,0,0,.8)";
+    x.fillRect(d.x,d.y,2,2);
+    d.y-=d.s;
+    if(d.y<0){d.y=c.height;d.x=Math.random()*c.width}
+  }
+  requestAnimationFrame(animate);
+}
+animate();
+
+/* ===== GLOW FOLLOW (MOUSE + TOUCH) ===== */
+function moveGlow(x,y){
+  glow.style.left=x+"px";
+  glow.style.top=y+"px";
+}
+addEventListener("mousemove",e=>moveGlow(e.clientX,e.clientY));
+addEventListener("touchmove",e=>moveGlow(e.touches[0].clientX,e.touches[0].clientY));
+
+/* ===== INSTALL FLOW ===== */
 function startInstall(){
-  overlay.style.display="flex";
-  setTimeout(()=>overlay.style.display="none",1200);
-
-  progressBox.style.display="block";
+  box.classList.add("flash");
+  progress.style.display="block";
   let w=0;
   let i=setInterval(()=>{
-    w+=5;
+    w+=4;
     bar.style.width=w+"%";
     if(w>=100){
       clearInterval(i);
-      permission.style.display="block";
+      perm.style.display="block";
     }
   },120);
 }
 
-/* minimal mode */
-function toggleMinimal(){
-  document.body.classList.toggle("minimal");
+function grant(){
+  alert("ACCESS GRANTED");
 }
 
-/* auto dark shift on idle */
-let idle;
-document.onmousemove=()=>{
-  clearTimeout(idle);
-  document.body.style.filter="none";
-  idle=setTimeout(()=>{
-    document.body.style.filter="brightness(0.75)";
-  },4000);
-};
+/* ===== AUTO RED → DARK SHIFT ===== */
+const h=new Date().getHours();
+if(h>20||h<6)document.body.classList.add("dark-mode");
 </script>
 
 </body>
